@@ -1,0 +1,306 @@
+{
+  "contract": "0x902365aFBc441aE06f249F5ff39a4928F3827Ee2",
+  "network": "studionet-61999",
+  "actors": {
+    "publisher": "0xeb57bc7125fa60d7482CE12058397369AB3581f8",
+    "challenger": "0x2da5393d7BBb9A037dc3abB56DbbC5C150fc843f"
+  },
+  "run": "muaparlu",
+  "sources": {
+    "publisher": {
+      "url": "https://raw.githubusercontent.com/eaglebooth/PatchProof/086c4ee10aca8fb208fcb0f7455239ee3f17efb3/docs/LIVE_STUDIONET_EVIDENCE.md",
+      "bytes": 4788,
+      "sha256": "a3190e5d0275725016eb103120c9f5158e038b336c5763bcac0d49c6a66283b5"
+    },
+    "counter": {
+      "url": "https://raw.githubusercontent.com/eaglebooth/ForkRight/011fd33fbe6aa1fde66c8489c6ca3c7b282d6e36/docs/patchproof-independent-verification.md",
+      "bytes": 1030,
+      "sha256": "3b08705cb8bdb358262a83b95302f2b2728e27943916a805e11f3718cf7fcc23"
+    }
+  },
+  "transactions": [
+    {
+      "label": "publish supported citation claim",
+      "hash": "0x12127c4e89c7fbf304d3a05fc5ccf34b9d233896d7b81720c4f45edc5b152837",
+      "expected": "SUCCESS",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    {
+      "label": "reject duplicate claim",
+      "hash": "0x8aaecdb349919610541ab20fd8c163e9e67ff05a4578a924ad943a9dac44ccfe",
+      "expected": "ROLLBACK",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    },
+    {
+      "label": "reject self challenge",
+      "hash": "0x39ccb194d0fd824687a2caf56890ca169f524c8488142e5a6ecb1b9bba57a449",
+      "expected": "ROLLBACK",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    },
+    {
+      "label": "submit repository-separated challenge",
+      "hash": "0xe49309a87806ff6c9828551cf06f0bafffdac7d1746c7f30cbd35b64b7490734",
+      "expected": "SUCCESS",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    {
+      "label": "resolve supported claim",
+      "hash": "0x042300e0156375e55c66151e31b4d51e454e4330e8938cfa4e8cd4794fdf56f5",
+      "expected": "SUCCESS",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    {
+      "label": "reject double resolution",
+      "hash": "0x0027fc4dcce95f6e0c2756c4e04c559c1762e2d6199a860d3882d761ba1036da",
+      "expected": "ROLLBACK",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    },
+    {
+      "label": "reject challenge after final ruling",
+      "hash": "0xcdc6dfc415ce32f90623f863d7c09119fe5220d63d926bfc765625dfce19cc66",
+      "expected": "ROLLBACK",
+      "status": "FINALIZED",
+      "execution": "ERROR"
+    },
+    {
+      "label": "publish misleading citation claim",
+      "hash": "0x663fc8a6ca929bd89f4dde59e4061adb2a424f74fba9ef2bc61410b8bb989a1b",
+      "expected": "SUCCESS",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    {
+      "label": "challenge misleading claim",
+      "hash": "0xf8e545f6bf93b525a9982846873ca562ccea2bd68c0445df47e75b93192a9559",
+      "expected": "SUCCESS",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    },
+    {
+      "label": "resolve misleading claim",
+      "hash": "0xdddbba6102af31d56f06cf0422f58b798bd0b60af88cb027c8caf6c7ca6972fa",
+      "expected": "SUCCESS",
+      "status": "FINALIZED",
+      "execution": "SUCCESS"
+    }
+  ],
+  "assertions": [
+    {
+      "label": "deployed ClaimAnchor V1",
+      "pass": true,
+      "details": {
+        "name": "ClaimAnchor",
+        "schema": "optimistic-citation-challenge-v1",
+        "version": 1
+      }
+    },
+    {
+      "label": "publish supported citation claim succeeded in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "SUCCESS",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "reject duplicate claim reverted in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "ERROR",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "reject self challenge reverted in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "ERROR",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "submit repository-separated challenge succeeded in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "SUCCESS",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "resolve supported claim succeeded in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "SUCCESS",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "consensus upheld bounded synthetic claim",
+      "pass": true,
+      "details": {
+        "challenger": "0x2da5393d7bbb9a037dc3abb56dbbc5c150fc843f",
+        "claim_id": "supported-muaparlu",
+        "counter_repository": "eaglebooth/forkright",
+        "counter_url": "https://raw.githubusercontent.com/eaglebooth/ForkRight/011fd33fbe6aa1fde66c8489c6ca3c7b282d6e36/docs/patchproof-independent-verification.md",
+        "exists": true,
+        "grounds": "Check whether the statement preserves the synthetic scope and matches the independently documented remediation evidence.",
+        "publisher": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+        "ruling": "SUPPORTED",
+        "ruling_digest": "77018bcfaf770de153ac0c7a19a55b1ba677077f6f721da72e3d3428ca5a6ddb",
+        "source_repository": "eaglebooth/patchproof",
+        "source_url": "https://raw.githubusercontent.com/eaglebooth/PatchProof/086c4ee10aca8fb208fcb0f7455239ee3f17efb3/docs/LIVE_STUDIONET_EVIDENCE.md",
+        "statement": "In the explicitly synthetic PP-2026-001 exercise, PatchProof recorded fixed version 2.4.1 and the separate verification report supported the same root-cause remediation.",
+        "status": "RESOLVED"
+      }
+    },
+    {
+      "label": "reject double resolution reverted in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "ERROR",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "reject challenge after final ruling reverted in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "ERROR",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "publish misleading citation claim succeeded in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "SUCCESS",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "challenge misleading claim succeeded in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "SUCCESS",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "resolve misleading claim succeeded in GenVM",
+      "pass": true,
+      "details": {
+        "execution": "SUCCESS",
+        "status": "FINALIZED"
+      }
+    },
+    {
+      "label": "consensus rejected misleading production claim",
+      "pass": true,
+      "details": {
+        "challenger": "0x2da5393d7bbb9a037dc3abb56dbbc5c150fc843f",
+        "claim_id": "misleading-muaparlu",
+        "counter_repository": "eaglebooth/forkright",
+        "counter_url": "https://raw.githubusercontent.com/eaglebooth/ForkRight/011fd33fbe6aa1fde66c8489c6ca3c7b282d6e36/docs/patchproof-independent-verification.md",
+        "exists": true,
+        "grounds": "The source labels the exercise synthetic and provides no evidence of global exploitation or customer losses.",
+        "publisher": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+        "ruling": "MISREPRESENTED",
+        "ruling_digest": "e2471744a919298525fe5e449c06e07bfe9fad3e56a4800c3af5899126cd56a8",
+        "source_repository": "eaglebooth/patchproof",
+        "source_url": "https://raw.githubusercontent.com/eaglebooth/PatchProof/086c4ee10aca8fb208fcb0f7455239ee3f17efb3/docs/LIVE_STUDIONET_EVIDENCE.md",
+        "statement": "PatchProof proved that a real production parser vulnerability was exploited globally and caused confirmed customer losses before version 2.4.1.",
+        "status": "RESOLVED"
+      }
+    },
+    {
+      "label": "publisher telemetry reflects both outcomes",
+      "pass": true,
+      "details": {
+        "account": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+        "challenge_losses": 0,
+        "challenge_wins": 0,
+        "challenges": 0,
+        "exists": true,
+        "faults": 1,
+        "published": 2,
+        "supported": 1
+      }
+    },
+    {
+      "label": "challenger telemetry reflects win and loss",
+      "pass": true,
+      "details": {
+        "account": "0x2da5393d7bbb9a037dc3abb56dbbc5c150fc843f",
+        "challenge_losses": 1,
+        "challenge_wins": 1,
+        "challenges": 2,
+        "exists": true,
+        "faults": 0,
+        "published": 0,
+        "supported": 0
+      }
+    }
+  ],
+  "final": {
+    "supported": {
+      "challenger": "0x2da5393d7bbb9a037dc3abb56dbbc5c150fc843f",
+      "claim_id": "supported-muaparlu",
+      "counter_repository": "eaglebooth/forkright",
+      "counter_url": "https://raw.githubusercontent.com/eaglebooth/ForkRight/011fd33fbe6aa1fde66c8489c6ca3c7b282d6e36/docs/patchproof-independent-verification.md",
+      "exists": true,
+      "grounds": "Check whether the statement preserves the synthetic scope and matches the independently documented remediation evidence.",
+      "publisher": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+      "ruling": "SUPPORTED",
+      "ruling_digest": "77018bcfaf770de153ac0c7a19a55b1ba677077f6f721da72e3d3428ca5a6ddb",
+      "source_repository": "eaglebooth/patchproof",
+      "source_url": "https://raw.githubusercontent.com/eaglebooth/PatchProof/086c4ee10aca8fb208fcb0f7455239ee3f17efb3/docs/LIVE_STUDIONET_EVIDENCE.md",
+      "statement": "In the explicitly synthetic PP-2026-001 exercise, PatchProof recorded fixed version 2.4.1 and the separate verification report supported the same root-cause remediation.",
+      "status": "RESOLVED"
+    },
+    "misleading": {
+      "challenger": "0x2da5393d7bbb9a037dc3abb56dbbc5c150fc843f",
+      "claim_id": "misleading-muaparlu",
+      "counter_repository": "eaglebooth/forkright",
+      "counter_url": "https://raw.githubusercontent.com/eaglebooth/ForkRight/011fd33fbe6aa1fde66c8489c6ca3c7b282d6e36/docs/patchproof-independent-verification.md",
+      "exists": true,
+      "grounds": "The source labels the exercise synthetic and provides no evidence of global exploitation or customer losses.",
+      "publisher": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+      "ruling": "MISREPRESENTED",
+      "ruling_digest": "e2471744a919298525fe5e449c06e07bfe9fad3e56a4800c3af5899126cd56a8",
+      "source_repository": "eaglebooth/patchproof",
+      "source_url": "https://raw.githubusercontent.com/eaglebooth/PatchProof/086c4ee10aca8fb208fcb0f7455239ee3f17efb3/docs/LIVE_STUDIONET_EVIDENCE.md",
+      "statement": "PatchProof proved that a real production parser vulnerability was exploited globally and caused confirmed customer losses before version 2.4.1.",
+      "status": "RESOLVED"
+    },
+    "publisherReputation": {
+      "account": "0xeb57bc7125fa60d7482ce12058397369ab3581f8",
+      "challenge_losses": 0,
+      "challenge_wins": 0,
+      "challenges": 0,
+      "exists": true,
+      "faults": 1,
+      "published": 2,
+      "supported": 1
+    },
+    "challengerReputation": {
+      "account": "0x2da5393d7bbb9a037dc3abb56dbbc5c150fc843f",
+      "challenge_losses": 1,
+      "challenge_wins": 1,
+      "challenges": 2,
+      "exists": true,
+      "faults": 0,
+      "published": 0,
+      "supported": 0
+    },
+    "stats": {
+      "claims": 2,
+      "resolved": 2
+    }
+  }
+}
